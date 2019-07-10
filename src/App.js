@@ -1,21 +1,19 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Appbar from './Components/Appbar.js';
 import Form from './Components/Form';
 import Charges from './Components/Charges';
 import './App.css';
 
 
-class App extends Component {
+const App = () => {
 
-  render() {
-    return (
-      <div className="App">
-        <Appbar />
-        <Form />
-        <Charges />
-      </div>
-    );
-  }
+  return (
+    <div className="App">
+      <Appbar />
+      <Form />
+      <Charges />
+    </div>
+  );
 }
 
 export default App;
