@@ -1,8 +1,17 @@
 import React, {Component} from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
 import Rows from './row';
-import Charges from './Charges';
+import '../App.css'
 
 class Form extends Component {
   constructor(props) {
@@ -48,11 +57,45 @@ class Form extends Component {
           <Button 
             onClick={this.onSubmit}>Submit</Button>
         </form>
-        <div>
-          {this.state.data.map((info) => 
-            <Charges amount={info.amount} type={info.type} date={info.date}/>
-          )}
-        </div>
+
+        <Paper className='Paper'>
+          <Toolbar>
+            <Typography variant='h6' color='primary'>CHARGE</Typography>
+          </Toolbar>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell>Amount</TableCell>
+                <TableCell>Type</TableCell>
+                <TableCell>Date</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {this.state.data.map((info) => 
+                <Rows amount={info.amount} type={info.type} date={info.date}/>
+              )}
+            </TableBody>
+          </Table>
+        </Paper>
+
+        <Paper className='Paper'>
+          <Toolbar>
+            <Typography variant='h6' color='primary'>TOTALS BY TYPE</Typography>
+          </Toolbar>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell>Type</TableCell>
+                <TableCell>Amount</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {this.state.data.map((info) => 
+                <Rows amount={info.amount} type={info.type} />
+              )}
+            </TableBody>
+          </Table>
+        </Paper>
       </div>
     );
   }
