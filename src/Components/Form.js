@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Rows from './row';
+import Charges from './Charges';
 
 class Form extends Component {
   constructor(props) {
@@ -49,7 +50,7 @@ class Form extends Component {
         </form>
         <div>
           {this.state.data.map((info) => 
-            <Rows amount={info.amount} type={info.type} date={info.date}/>
+            <Charges amount={info.amount} type={info.type} date={info.date}/>
           )}
         </div>
       </div>

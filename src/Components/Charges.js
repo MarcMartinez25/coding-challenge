@@ -35,7 +35,7 @@ const Charges = (props) => {
         </TableRow>
       </TableHead>
       <TableBody>
-        <Rows />
+        <Rows amount={props.amount} type={props.type} date={props.date}/>
       </TableBody>
     </Table>
   </Paper>
