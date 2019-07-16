@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -20,14 +19,14 @@ class Form extends Component {
       date: new Date(),
       data: [],
       amount: '',
-      type:''
+      type:'',
     };
   }
 
   onSubmit = event => {
     event.preventDefault();
     const info = {
-      amount: this.state.amount, 
+      amount: parseFloat(this.state.amount,10), 
       type: this.state.type, 
       date:this.state.date.toLocaleDateString()
     };
@@ -54,7 +53,7 @@ class Form extends Component {
             onChange={evt => this.setState({type: evt.target.value})}
             placeholder="Type"
           />
-          <Button 
+          <Button
             onClick={this.onSubmit}>Submit</Button>
         </form>
 
@@ -90,9 +89,24 @@ class Form extends Component {
               </TableRow>
             </TableHead>
             <TableBody>
-              {this.state.data.map((info) => 
-                <Rows amount={info.amount} type={info.type} />
-              )}
+              <Rows 
+                amount={this.state.data.filter(info => info.type.toLowerCase() === 'fee').reduce((total, info) => {
+                  return total += info.amount
+                }, 0)} 
+                type='Fee'
+              />
+              <Rows 
+                amount={this.state.data.filter(info => info.type.toLowerCase() === 'deposit').reduce((total, info) => {
+                  return total += info.amount
+                }, 0)} 
+                type='Deposit'
+              />
+              <Rows 
+                amount={this.state.data.filter(info => info.type.toLowerCase() === 'expense').reduce((total, info) => {
+                  return total += info.amount
+                }, 0)} 
+                type='Expense'
+              />
             </TableBody>
           </Table>
         </Paper>

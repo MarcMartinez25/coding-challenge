@@ -3,7 +3,12 @@
 }
 
 .Paper {
-  margin-top: 25px;
-  margin-left: 25px;
-  margin-right: 25px;
+  margin: 50px 75px 25px 75px;
+}
+
+@media only screen and (max-width: 768px) {
+
+  .Paper {
+    margin: 50px 25px 25px 25px;
+  }
 }
