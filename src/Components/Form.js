@@ -41,7 +41,7 @@ class Form extends Component {
   render() {
     return(
       <div>
-        <h2>Today's Date is {this.state.date.toLocaleDateString()}.</h2>
+        <h2>Hi, Today's Date is {this.state.date.toLocaleDateString()}.</h2>
         <form>
           <TextField
             value={this.state.amount}
